@@ -1,0 +1,1 @@
+variable "docker_image_name" {}
