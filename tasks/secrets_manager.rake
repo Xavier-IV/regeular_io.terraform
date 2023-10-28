@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 prompt = TTY::Prompt.new
 
 namespace :secrets_manager do

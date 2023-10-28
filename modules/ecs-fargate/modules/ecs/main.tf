@@ -35,6 +35,10 @@ resource "aws_ecs_task_definition" "app_task_definition" {
         {
           name  = "REGEULAR_DOMAIN"
           value = var.global_app.domain
+        },
+        {
+          name = "REDIS_URL"
+          value = var.redis_url
         }
       ],
       portMappings = [
