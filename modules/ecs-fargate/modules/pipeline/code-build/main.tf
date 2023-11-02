@@ -26,7 +26,7 @@ resource "aws_codebuild_project" "codebuild_project" {
 
     environment_variable {
       name  = "RAILS_ENV"
-      value = "staging"
+      value = var.global_app.tag.environment
     }
 
     environment_variable {

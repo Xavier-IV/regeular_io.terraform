@@ -18,7 +18,7 @@ resource "aws_ecs_task_definition" "app_task_definition" {
       environment = [
         {
           name  = "RAILS_ENV",
-          value = "staging"
+          value = var.global_app.tag.environment
         },
         {
           name  = "RAILS_SERVE_STATIC_FILES"
