@@ -125,6 +125,22 @@ resource "cloudflare_record" "app_cf_record_root_business" {
   ttl  = 1
 }
 
+data "cloudflare_zone" "app_cf_zone_net" {
+  account_id = var.cloudflare.account_id
+  name       = var.cloudflare.zone_net
+}
+
+resource "cloudflare_record" "app_cf_record_root_admin" {
+  zone_id = data.cloudflare_zone.app_cf_zone_net.zone_id
+  name    = var.aws.route53.root_admin
+  value   = module.load-balancer.lb.dns_name
+
+  proxied = true
+
+  type = "CNAME"
+  ttl  = 1
+}
+
 resource "aws_s3_bucket" "bucket" {
   bucket = "${var.app.name.standard}-bucket-${var.app.tag.environment}"
 }

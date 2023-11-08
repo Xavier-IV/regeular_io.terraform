@@ -8,7 +8,9 @@ variable "aws" {
     route53 = object({
       root          = string,
       root_business = string,
-      zone          = string
+      zone          = string,
+      root_admin    = string,
+      zone_admin    = string
     }),
   })
   default = {
@@ -19,7 +21,9 @@ variable "aws" {
     route53 = {
       root          = "staging",
       root_business = "staging-business",
-      zone          = "navly.app"
+      zone          = "regeular.io",
+      root_admin    = "staging",
+      zone_admin    = "regeular.net"
     }
   }
   sensitive = true
@@ -41,6 +45,7 @@ variable "app" {
       pascal   = string,
       kebab    = string
     }),
+    with_waf         = bool
     with_database    = bool
     with_elasticache = bool
   })
@@ -55,6 +60,7 @@ variable "app" {
       pascal   = "StaginNavly",
       kebab    = "staging-navly-app"
     }
+    with_waf         = false
     with_database    = true
     with_elasticache = true
   }
@@ -72,7 +78,8 @@ variable "cloudflare" {
   type = object({
     api_token  = string,
     account_id = string,
-    zone       = string
+    zone       = string,
+    zone_net   = string
   })
 
   sensitive = true

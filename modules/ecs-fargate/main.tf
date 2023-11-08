@@ -46,6 +46,14 @@ module "pipeline" {
   global_repository = var.global_repository
 }
 
+module "waf" {
+  count = var.global_app.with_waf ? 1 : 0
+  source = "./modules/waf"
+
+  module-load-balancer = var.module-load-balancer
+  global_app           = var.global_app
+}
+
 module "route53" {
   source = "./modules/route53"
   app_lb = var.module-load-balancer.lb

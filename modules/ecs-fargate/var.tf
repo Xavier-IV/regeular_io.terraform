@@ -18,7 +18,8 @@ variable "global_app" {
     name = object({
       pascal = string,
       kebab  = string
-    })
+    }),
+    with_waf = bool
   })
 }
 
@@ -32,7 +33,9 @@ variable "global_aws" {
     route53 = object({
       root          = string,
       root_business = string,
-      zone          = string
+      zone          = string,
+      root_admin    = string,
+      zone_admin = string
     }),
   })
   sensitive = true
